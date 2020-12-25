@@ -1,0 +1,20 @@
+class Solution {
+    public int jump(int[] nums) {
+        int currReach = 0;
+        int maxReach = 0;
+        int jumps = 0;
+        
+        int l = nums.length;
+        for(int i=0; i<l-1; i++){
+            int temp = i+nums[i];
+            if(temp > maxReach)
+                maxReach = temp;
+            
+            if(i == currReach){
+                jumps++;
+                currReach = maxReach;
+            };
+        }
+        return jumps;
+    }
+}
