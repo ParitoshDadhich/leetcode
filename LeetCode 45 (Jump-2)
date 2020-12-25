@@ -1,0 +1,25 @@
+class Solution{
+    static int jump(int[] arr){
+        int l = arr.length;
+        Integer dp[] = new Integer[l];
+        dp[l-1] = 0; // because I am already at the last step;
+        
+        // i will start traversing form l-2;
+        for(int i = l-2; i>=0; i--){
+            int steps = arr[i];
+            
+            int min = Integer.MAX_VALUE;
+            for(int j=1; j<=steps; j++){
+                if(i+j < l && dp[i+j] != null){
+                    if(min > dp[i+j])
+                        min = dp[i+j];
+                }
+                
+                if(min != Integer.MAX_VALUE)
+                    dp[i] = min+1;
+            }
+        }
+        
+        return dp[0];
+    }
+}
