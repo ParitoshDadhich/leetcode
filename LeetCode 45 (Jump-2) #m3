@@ -1,0 +1,22 @@
+class Solution{
+    static int jump(int[] arr){
+        return helper(arr, 0, arr.length-1);
+    }
+    
+    static int helper(int arr[], int l, int r){
+        if(l == r)
+            return 0;
+        
+        if(arr[l] == 0)
+            return Integer.MAX_VALUE;
+            
+        int min = Integer.MAX_VALUE;    
+        for(int i=l+1; i<=r && i<= l+arr[l]; i++){
+            int jumps = helper(arr, i, r);
+            if(jumps != Integer.MAX_VALUE && (jumps + 1) < min)
+                min = jumps + 1;
+        }
+        
+        return min;
+    }
+}
